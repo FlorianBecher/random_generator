@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +33,9 @@ public class GenerateActivity extends AppCompatActivity {
         int index3 = randomGenerator.nextInt(secondWord.size());
         String third = firstWord.get(index3);
         String finalWord = first+second+third;
-
+        CharSequence word = finalWord;
+        TextView tv = (TextView)findViewById(R.id.textViewName);
+        tv.setText(word);
 
 
     }
