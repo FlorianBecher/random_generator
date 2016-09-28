@@ -40,7 +40,7 @@ public class GenerateActivity extends AppCompatActivity {
         number = num;
     }
 
-    private void generateName(View v){
+    public void generateName(View v){
         List<String> firstWord = generateFirstWordList();
         List<String> secondWord = generateSecondWordList();
         List<String> thirdWord = generateThirdWordList();
@@ -65,6 +65,8 @@ public class GenerateActivity extends AppCompatActivity {
         firstWord.add("Mr.");
         firstWord.add("Mrs.");
         firstWord.add("Dr.");
+        firstWord.add("");
+        firstWord.add("");
         firstWord.add("");
         return firstWord;
     }
