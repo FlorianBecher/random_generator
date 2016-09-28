@@ -1,12 +1,16 @@
 package com.example.admin.randomusername_generator;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -24,27 +28,6 @@ public class GenerateActivity extends AppCompatActivity {
         generateName(null);
     }
 
-    public void generateName(View v){
-        //Generate Name
-
-        Random randomchoose = new Random();
-        int random = randomchoose.nextInt(5);
-
-        if(random == 1){
-            nameGenerator1();
-        }else if(random == 2){
-            nameGenerator2();
-        }else if(random == 3){
-            nameGenerator3();
-        }else if(random == 0){
-            nameGenerator2();
-        }else{
-            nameGenerator3();
-        }
-
-        count();
-    }
-
     private void count(){
         //Counting up!
         TextView myTextView = (TextView)findViewById(R.id.generate_count);
@@ -57,38 +40,7 @@ public class GenerateActivity extends AppCompatActivity {
         number = num;
     }
 
-    private void nameGenerator1(){
-        List<String> normalNames = generateNormalWordList();
-
-        Random randomGenerator = new Random();
-        int index1 = randomGenerator.nextInt(normalNames.size());
-        String stringWord = normalNames.get(index1);
-
-        CharSequence word = stringWord;
-        TextView tv = (TextView)findViewById(R.id.textViewName);
-        tv.setText(word);
-    }
-
-    private void nameGenerator2(){
-        //List<String> firstOfTwo = generateFirstOfTwoWordList();
-        //List<String> secondOfTwo = generateSecondOfTwoWordList();
-        List<String> secondWordList = generateSecondWordList();
-        List<String> thirdWordList = generateThirdWordList();
-
-        Random randomGenerator = new Random();
-        int index1 = randomGenerator.nextInt(secondWordList.size());
-        String firstWord = secondWordList.get(index1);
-
-        int index2 = randomGenerator.nextInt(thirdWordList.size());
-        String secondWord = thirdWordList.get(index2);
-
-        String finalWord = firstWord+secondWord;
-        CharSequence word = finalWord;
-        TextView tv = (TextView)findViewById(R.id.textViewName);
-        tv.setText(word);
-    }
-
-    private void nameGenerator3(){
+    private void generateName(View v){
         List<String> firstWord = generateFirstWordList();
         List<String> secondWord = generateSecondWordList();
         List<String> thirdWord = generateThirdWordList();
@@ -103,6 +55,8 @@ public class GenerateActivity extends AppCompatActivity {
         CharSequence word = finalWord;
         TextView tv = (TextView)findViewById(R.id.textViewName);
         tv.setText(word);
+
+        count();
     }
 
     private List generateFirstWordList(){
@@ -111,6 +65,7 @@ public class GenerateActivity extends AppCompatActivity {
         firstWord.add("Mr.");
         firstWord.add("Mrs.");
         firstWord.add("Dr.");
+        firstWord.add("");
         return firstWord;
     }
     private List generateSecondWordList(){
@@ -134,6 +89,34 @@ public class GenerateActivity extends AppCompatActivity {
         secondWord.add("Old");
         secondWord.add("Young");
         secondWord.add("Ugly");
+        secondWord.add("Shy");
+        secondWord.add("Lone");
+        secondWord.add("Danger");
+        secondWord.add("Nasty");
+        secondWord.add("Walking");
+        secondWord.add("Little");
+        secondWord.add("Incredible");
+        secondWord.add("Sweaty");
+        secondWord.add("Ripped");
+        secondWord.add("Pumped");
+        secondWord.add("Buffy");
+        secondWord.add("Juiced");
+        secondWord.add("Chiseled");
+        secondWord.add("Hairy");
+        secondWord.add("Slimy");
+        secondWord.add("Furry");
+        secondWord.add("Tiny");
+        secondWord.add("Small");
+        secondWord.add("Thick");
+        secondWord.add("Slippery");
+        secondWord.add("Flying");
+        secondWord.add("Growing");
+        secondWord.add("Shrinking");
+        secondWord.add("Yellow");
+        secondWord.add("Red");
+        secondWord.add("Blue");
+        secondWord.add("Evil");
+        secondWord.add("Dark");
         return secondWord;
     }
     private List generateThirdWordList(){
@@ -148,76 +131,18 @@ public class GenerateActivity extends AppCompatActivity {
         thirdWord.add("Fish");
         thirdWord.add("Dick");
         thirdWord.add("Dude");
+        thirdWord.add("Hunter");
+        thirdWord.add("God");
+        thirdWord.add("Dog");
+        thirdWord.add("Yeezy");
+        thirdWord.add("Brick");
+        thirdWord.add("Ginger");
+        thirdWord.add("Face");
+        thirdWord.add("Fatty");
+        thirdWord.add("Boy");
+        thirdWord.add("Girl");
+        thirdWord.add("Pirate");
+        thirdWord.add("Batman");
         return thirdWord;
     }
-    private List generateNormalWordList(){
-        List<String> normalWord = new ArrayList<String>();
-        normalWord.add("Hans");
-        normalWord.add("Peter");
-        normalWord.add("Sandro");
-        normalWord.add("Eric");
-        normalWord.add("Alexander");
-        normalWord.add("Alexandra");
-        normalWord.add("Gloaria");
-        normalWord.add("Elisa");
-        normalWord.add("Johannes");
-        normalWord.add("Dieter");
-        normalWord.add("Sabrina");
-        normalWord.add("Erica");
-        normalWord.add("Sabine");
-        normalWord.add("Melanie");
-        normalWord.add("Olivia");
-        normalWord.add("Livia");
-        normalWord.add("Silvan");
-        normalWord.add("Livio");
-        normalWord.add("Enis");
-        return normalWord;
-    }
-/*
-    private List generateFirstOfTwoWordList(){
-        List<String> firstOfTwo = new ArrayList<String>();
-        firstOfTwo.add("");
-        firstOfTwo.add("Peter");
-        firstOfTwo.add("Sandro");
-        firstOfTwo.add("Eric");
-        firstOfTwo.add("Alexander");
-        firstOfTwo.add("Alexandra");
-        firstOfTwo.add("Gloaria");
-        firstOfTwo.add("Elisa");
-        firstOfTwo.add("Johannes");
-        firstOfTwo.add("Dieter");
-        firstOfTwo.add("Sabrina");
-        firstOfTwo.add("Erica");
-        firstOfTwo.add("Sabine");
-        firstOfTwo.add("Melanie");
-        firstOfTwo.add("Olivia");
-        firstOfTwo.add("Livia");
-        firstOfTwo.add("Silvan");
-        firstOfTwo.add("Livio");
-        return firstOfTwo;
-    }
-
-    private List generateSecondOfTwoWordList(){
-        List<String> secondOfTwo = new ArrayList<String>();
-        secondOfTwo.add("Hans");
-        secondOfTwo.add("Peter");
-        secondOfTwo.add("Sandro");
-        secondOfTwo.add("Eric");
-        secondOfTwo.add("Alexander");
-        secondOfTwo.add("Alexandra");
-        secondOfTwo.add("Gloaria");
-        secondOfTwo.add("Elisa");
-        secondOfTwo.add("Johannes");
-        secondOfTwo.add("Dieter");
-        secondOfTwo.add("Sabrina");
-        secondOfTwo.add("Erica");
-        secondOfTwo.add("Sabine");
-        secondOfTwo.add("Melanie");
-        secondOfTwo.add("Olivia");
-        secondOfTwo.add("Livia");
-        secondOfTwo.add("Silvan");
-        secondOfTwo.add("Livio");
-        return secondOfTwo;
-    }
-*/
 }
