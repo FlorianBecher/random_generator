@@ -1,18 +1,13 @@
 package com.example.admin.randomusername_generator;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,12 +15,32 @@ import java.util.Random;
 public class GenerateActivity extends AppCompatActivity {
 
     public int number;
+    // The following are used for the shake detection
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate);
         generateName(null);
+
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+            @Override
+            public void onShake(int count) {
+                generateName(null);
+            }
+        });
+
     }
 
     private void count(){
@@ -40,7 +55,7 @@ public class GenerateActivity extends AppCompatActivity {
         number = num;
     }
 
-    private void generateName(View v){
+    public void generateName(View v){
         List<String> firstWord = generateFirstWordList();
         List<String> secondWord = generateSecondWordList();
         List<String> thirdWord = generateThirdWordList();
@@ -119,7 +134,7 @@ public class GenerateActivity extends AppCompatActivity {
         secondWord.add("Dark");
         return secondWord;
     }
-    private List generateThirdWordList(){
+    private List generateThirdWordList() {
         List<String> thirdWord = new ArrayList<String>();
         thirdWord.add("Fighter");
         thirdWord.add("Runner");
@@ -145,4 +160,18 @@ public class GenerateActivity extends AppCompatActivity {
         thirdWord.add("Batman");
         return thirdWord;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
+    }
+
 }
