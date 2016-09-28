@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.TextView;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -14,38 +15,49 @@ import java.util.Random;
 
 public class GenerateActivity extends AppCompatActivity {
 
+    public int number;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate);
     }
-    public void openGenerateView(View v){
-        Intent intent = new Intent(this, GenerateActivity.class);
-        startActivity(intent);
+
+    public void generateName(View v){
+        //Generate Name
+
         List<String> firstWord = generateFirstWordList();
         List<String> secondWord = generateSecondWordList();
         List<String> thirdWord = generateThirdWordList();
         Random randomGenerator = new Random();
-        int index1 = randomGenerator.nextInt(secondWord.size());
+        int index1 = randomGenerator.nextInt(firstWord.size());
         String first = firstWord.get(index1);
         int index2 = randomGenerator.nextInt(secondWord.size());
-        String second = firstWord.get(index2);
-        int index3 = randomGenerator.nextInt(secondWord.size());
-        String third = firstWord.get(index3);
+        String second = secondWord.get(index2);
+        int index3 = randomGenerator.nextInt(thirdWord.size());
+        String third = thirdWord.get(index3);
         String finalWord = first+second+third;
         CharSequence word = finalWord;
         TextView tv = (TextView)findViewById(R.id.textViewName);
         tv.setText(word);
 
-
+        //Counting up!
+        TextView myTextView = (TextView)findViewById(R.id.generate_count);
+        CharSequence sNumber = myTextView.getText();
+        int num = (Integer.valueOf((String) sNumber));
+        ++num;
+        String sNum = String.valueOf(num);
+        CharSequence cNum = sNum;
+        myTextView.setText(cNum);
+        number = num;
     }
+
     public List generateFirstWordList(){
         List<String> firstWord = new ArrayList<String>();
         firstWord.add("The");
         firstWord.add("Mr.");
         firstWord.add("Mrs.");
         firstWord.add("Dr.");
-        firstWord.add("President");
         return firstWord;
     }
     public List generateSecondWordList(){
@@ -54,11 +66,9 @@ public class GenerateActivity extends AppCompatActivity {
         secondWord.add("Crazy");
         secondWord.add("Fancy");
         secondWord.add("Anxious");
-        secondWord.add("Attractive");
         secondWord.add("Charming");
         secondWord.add("Stupid");
         secondWord.add("Happy");
-        secondWord.add("Brilliant");
         secondWord.add("Lucky");
         secondWord.add("Wise");
         secondWord.add("Soft");
@@ -87,4 +97,5 @@ public class GenerateActivity extends AppCompatActivity {
         thirdWord.add("Dude");
         return thirdWord;
     }
+
 }
