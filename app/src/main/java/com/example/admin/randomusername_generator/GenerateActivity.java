@@ -81,6 +81,8 @@ public class GenerateActivity extends AppCompatActivity {
         firstWord.add("Mrs.");
         firstWord.add("Dr.");
         firstWord.add("");
+        firstWord.add("");
+        firstWord.add("");
         return firstWord;
     }
     private List generateSecondWordList(){
