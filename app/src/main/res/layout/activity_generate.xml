@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textView6"
-            android:text="0"
+            android:text="@string/count"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="30dp"
             android:layout_alignEnd="@+id/textView"
