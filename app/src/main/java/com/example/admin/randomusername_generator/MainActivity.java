@@ -7,9 +7,12 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
+
+    public boolean shakable = true;
 
     // The following are used for the shake detection
     private SensorManager mSensorManager;
@@ -20,6 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        shakable = true;
+
+        Switch mySwitch = (Switch) findViewById(R.id.switch1);
+
+        assert mySwitch != null;
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    shakable = true;
+                }else if(!isChecked){
+                    shakable = false;
+                }
+            }
+        });
 
         // ShakeDetector initialization
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -30,14 +47,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onShake(int count) {
-               firstGenerateName(null);
+                if(shakable){
+                    firstGenerateName(null);
+                }
             }
         });
+    }
 
+    public boolean getShakable(){
+        return shakable;
     }
 
     public void firstGenerateName(View v){
         Intent intent = new Intent(this, GenerateActivity.class);
+        intent.putExtra("shake", shakable);
         startActivity(intent);
     }
 
@@ -54,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }
+
 
 
 

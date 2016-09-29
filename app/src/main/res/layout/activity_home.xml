@@ -21,13 +21,13 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView4"
-            android:layout_alignRight="@+id/textView4"
-            android:layout_below="@+id/textView2"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="41dp"
             android:text="Click or Shake to generate"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:layout_below="@+id/imageView2"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/textView2"
@@ -66,13 +66,15 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
             android:maxHeight="42dp"
             android:maxWidth="42dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/shake" />
+            android:src="@drawable/shake"
+            android:layout_below="@+id/textView"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3" />
 
         <Button
             android:id="@+id/buttonGenerate"

@@ -6,6 +6,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.Random;
 public class GenerateActivity extends AppCompatActivity {
 
     public int number;
+    private boolean shake;
     // The following are used for the shake detection
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -27,6 +30,26 @@ public class GenerateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate);
         generateName(null);
 
+        final MainActivity main = new MainActivity();
+        Switch mySwitch = (Switch) findViewById(R.id.switch2);
+        Bundle bundle = getIntent().getExtras();
+        boolean shakeable = bundle.getBoolean("shake");
+        shake = shakeable;
+
+        mySwitch.setChecked(shake);
+
+        if (mySwitch != null) {
+            mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        shake = true;
+                    }else if(!isChecked){
+                        shake = false;
+                    }
+                }
+            });
+        }
+
 
         // ShakeDetector initialization
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -37,7 +60,9 @@ public class GenerateActivity extends AppCompatActivity {
 
             @Override
             public void onShake(int count) {
-                generateName(null);
+                if (shake) {
+                    generateName(null);
+                }
             }
         });
 
@@ -56,22 +81,22 @@ public class GenerateActivity extends AppCompatActivity {
     }
 
     public void generateName(View v){
-        List<String> firstWord = generateFirstWordList();
-        List<String> secondWord = generateSecondWordList();
-        List<String> thirdWord = generateThirdWordList();
-        Random randomGenerator = new Random();
-        int index1 = randomGenerator.nextInt(firstWord.size());
-        String first = firstWord.get(index1);
-        int index2 = randomGenerator.nextInt(secondWord.size());
-        String second = secondWord.get(index2);
-        int index3 = randomGenerator.nextInt(thirdWord.size());
-        String third = thirdWord.get(index3);
-        String finalWord = first+second+third;
-        CharSequence word = finalWord;
-        TextView tv = (TextView)findViewById(R.id.textViewName);
-        tv.setText(word);
+            List<String> firstWord = generateFirstWordList();
+            List<String> secondWord = generateSecondWordList();
+            List<String> thirdWord = generateThirdWordList();
+            Random randomGenerator = new Random();
+            int index1 = randomGenerator.nextInt(firstWord.size());
+            String first = firstWord.get(index1);
+            int index2 = randomGenerator.nextInt(secondWord.size());
+            String second = secondWord.get(index2);
+            int index3 = randomGenerator.nextInt(thirdWord.size());
+            String third = thirdWord.get(index3);
+            String finalWord = first + second + third;
+            CharSequence word = finalWord;
+            TextView tv = (TextView) findViewById(R.id.textViewName);
+            tv.setText(word);
 
-        count();
+            count();
     }
 
     private List generateFirstWordList(){
