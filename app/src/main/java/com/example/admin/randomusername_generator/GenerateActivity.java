@@ -104,6 +104,7 @@ public class GenerateActivity extends AppCompatActivity {
         secondWord.add("Wet");
         secondWord.add("Rich");
         secondWord.add("Old");
+        secondWord.add("Dead");
         secondWord.add("Young");
         secondWord.add("Ugly");
         secondWord.add("Shy");
@@ -160,6 +161,8 @@ public class GenerateActivity extends AppCompatActivity {
         thirdWord.add("Girl");
         thirdWord.add("Pirate");
         thirdWord.add("Batman");
+        thirdWord.add("Grandpa");
+
         return thirdWord;
     }
     @Override
