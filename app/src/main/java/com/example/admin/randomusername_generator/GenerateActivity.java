@@ -112,6 +112,10 @@ public class GenerateActivity extends AppCompatActivity {
     }
     private List generateSecondWordList(){
         List<String> secondWord = new ArrayList<String>();
+
+        secondWord.add("");
+        secondWord.add("");
+        secondWord.add("");
         secondWord.add("Cool");
         secondWord.add("Crazy");
         secondWord.add("Fancy");
@@ -160,6 +164,38 @@ public class GenerateActivity extends AppCompatActivity {
         secondWord.add("Blue");
         secondWord.add("Evil");
         secondWord.add("Dark");
+        secondWord.add("Clever");
+        secondWord.add("Clownish");
+        secondWord.add("Attractive");
+        secondWord.add("Rebellious");
+        secondWord.add("Swollen");
+        secondWord.add("Abnormal");
+        secondWord.add("Elite");
+        secondWord.add("Fabulous");
+        secondWord.add("Fanatical");
+        secondWord.add("Fearless");
+        secondWord.add("Hallowed");
+        secondWord.add("Idiotic");
+        secondWord.add("Huge");
+        secondWord.add("Macabre");
+        secondWord.add("Nippy");
+        secondWord.add("Quirky");
+        secondWord.add("Ritzy");
+        secondWord.add("Shaggy");
+        secondWord.add("Sexy");
+        secondWord.add("Cocky");
+        secondWord.add("Hot");
+        secondWord.add("Bearded");
+        secondWord.add("Naked");
+        secondWord.add("Fluffy");
+        secondWord.add("Shaky");
+        secondWord.add("Sticky");
+        secondWord.add("Slimy");
+        secondWord.add("Violent");
+        secondWord.add("Unholy");
+        secondWord.add("Holy");
+        secondWord.add("Twisted");
+
         return secondWord;
     }
     private List generateThirdWordList() {
@@ -187,6 +223,23 @@ public class GenerateActivity extends AppCompatActivity {
         thirdWord.add("Pirate");
         thirdWord.add("Batman");
         thirdWord.add("Grandpa");
+        thirdWord.add("Snoopy");
+        thirdWord.add("Whipper");
+        thirdWord.add("Snapper");
+        thirdWord.add("Fucker");
+        thirdWord.add("Goblin");
+        thirdWord.add("Milf");
+        thirdWord.add("Cock");
+        thirdWord.add("Pussy");
+        thirdWord.add("Nipple");
+        thirdWord.add("Jizz");
+        thirdWord.add("Potato");
+        thirdWord.add("Camel");
+        thirdWord.add("Butt");
+        thirdWord.add("Ass");
+        thirdWord.add("Cookie");
+        thirdWord.add("Wiener");
+        thirdWord.add("Mother");
 
         return thirdWord;
     }
